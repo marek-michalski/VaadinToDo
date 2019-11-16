@@ -13,17 +13,16 @@ import com.vaadin.flow.router.Route;
 public class Main extends VerticalLayout {
 
     public Main() {
-        VerticalLayout todosList = new VerticalLayout(); // (1)
-        TextField taskField = new TextField(); // (2)
-        Button addButton = new Button("Add"); // (3)
+        VerticalLayout todosList = new VerticalLayout();
+        TextField taskField = new TextField();
+        Button addButton = new Button("Add");
         addButton.addClickShortcut(Key.ENTER);
         addButton.addClickListener(click -> {
-            // (4)
             Checkbox checkbox = new Checkbox(taskField.getValue());
             todosList.add(checkbox);
         });
-        add( // (5)
-                new H1("Vaadin Todo"),
+        add(
+                new H1("Lista zakupów:"),
                 todosList,
                 new HorizontalLayout(
                         taskField,
