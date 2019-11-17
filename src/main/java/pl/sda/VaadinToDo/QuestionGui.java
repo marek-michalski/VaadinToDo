@@ -1,6 +1,8 @@
 package pl.sda.VaadinToDo;
 
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.icon.Icon;
+import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextArea;
@@ -8,7 +10,7 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
 import org.springframework.beans.factory.annotation.Autowired;
 
-@Route("lista")
+@Route("list")
 public class QuestionGui extends VerticalLayout {
 
     @Autowired
@@ -20,7 +22,14 @@ public class QuestionGui extends VerticalLayout {
 
     public QuestionGui() {
 
-        add(textFieldTitle, buttonAdd);
+        Button buttonListAll = new Button("Lista zakupów", new Icon(VaadinIcon.BUTTON));
+        buttonListAll.addClickListener(e ->
+                buttonListAll.getUI().ifPresent(ui ->
+                        ui.navigate("listAll")));
+
+        buttonListAll.addClassName("buttonListAll");
+
+        add(textFieldTitle, buttonAdd, buttonListAll);
 
         buttonAdd.addClickListener(click -> {
             Notification.show("Dodano do bazy!");
